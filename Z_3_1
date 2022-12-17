@@ -1,0 +1,45 @@
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim_1.txt /user/cloudera/
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim_2.txt /user/cloudera/
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim_3.txt /user/cloudera/
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim_4.txt /user/cloudera/
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/
+Found 4 items
+-rw-r--r--   1 cloudera cloudera     736519 2022-12-13 06:24 /user/cloudera/vim_1.txt
+-rw-r--r--   1 cloudera cloudera     770324 2022-12-13 06:25 /user/cloudera/vim_2.txt
+-rw-r--r--   1 cloudera cloudera     843205 2022-12-13 06:25 /user/cloudera/vim_3.txt
+-rw-r--r--   1 cloudera cloudera     697960 2022-12-13 06:26 /user/cloudera/vim_4.txt
+
+[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_1.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_2.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_3.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_4.txt
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/
+Found 4 items
+-rwxrw-r--   1 cloudera cloudera     736519 2022-12-13 06:24 /user/cloudera/vim_1.txt
+-rwxrw-r--   1 cloudera cloudera     770324 2022-12-13 06:25 /user/cloudera/vim_2.txt
+-rwxrw-r--   1 cloudera cloudera     843205 2022-12-13 06:25 /user/cloudera/vim_3.txt
+-rwxrw-r--   1 cloudera cloudera     697960 2022-12-13 06:26 /user/cloudera/vim_4.txt
+
+[cloudera@quickstart ~]$ hdfs dfs -getmerge -nl /user/cloudera/*.txt ./vim_all.txt
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/vim_all.txt /user/cloudera/
+[cloudera@quickstart ~]$ hdfs dfs -du -s /user/cloudera/*
+736519  736519  /user/cloudera/vim_1.txt
+770324  770324  /user/cloudera/vim_2.txt
+843205  843205  /user/cloudera/vim_3.txt
+697960  697960  /user/cloudera/vim_4.txt
+6096024  6096024  /user/cloudera/vim_all.txt
+
+[cloudera@quickstart ~]$ hdfs dfs -setrep -R 2 /user/cloudera/vim_all.txt
+Replication 2 set: /user/cloudera/vim_all.txt
+[cloudera@quickstart ~]$ hdfs dfs -du -s /user/cloudera/*
+736519  736519  /user/cloudera/vim_1.txt
+770324  770324  /user/cloudera/vim_2.txt
+843205  843205  /user/cloudera/vim_3.txt
+697960  697960  /user/cloudera/vim_4.txt
+6096024  12192048  /user/cloudera/vim_all.txt
+
+[cloudera@quickstart ~]$ hdfs dfs -copyToLocal /user/cloudera/vim_all.txt /home/cloudera/Desktop/
+[cloudera@quickstart ~]$ cd /home/cloudera/Desktop/
+[cloudera@quickstart Desktop]$ wc -l vim_all.txt
+20552 vim_all.txt
+
