@@ -9,16 +9,16 @@ Found 4 items
 -rw-r--r--   1 cloudera cloudera     843205 2022-12-13 06:25 /user/cloudera/vim_3.txt
 -rw-r--r--   1 cloudera cloudera     697960 2022-12-13 06:26 /user/cloudera/vim_4.txt
 
-[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_1.txt
-[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_2.txt
-[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_3.txt
-[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim_4.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 755 /user/cloudera/vim_1.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 755 /user/cloudera/vim_2.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 755 /user/cloudera/vim_3.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 755 /user/cloudera/vim_4.txt
 [cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/
 Found 4 items
--rwxrw-r--   1 cloudera cloudera     736519 2022-12-13 06:24 /user/cloudera/vim_1.txt
--rwxrw-r--   1 cloudera cloudera     770324 2022-12-13 06:25 /user/cloudera/vim_2.txt
--rwxrw-r--   1 cloudera cloudera     843205 2022-12-13 06:25 /user/cloudera/vim_3.txt
--rwxrw-r--   1 cloudera cloudera     697960 2022-12-13 06:26 /user/cloudera/vim_4.txt
+-rwxrx-rx--   1 cloudera cloudera     736519 2022-12-13 06:24 /user/cloudera/vim_1.txt
+-rwxrx-rx--   1 cloudera cloudera     770324 2022-12-13 06:25 /user/cloudera/vim_2.txt
+-rwxrx-rx--   1 cloudera cloudera     843205 2022-12-13 06:25 /user/cloudera/vim_3.txt
+-rwxrx-rx--   1 cloudera cloudera     697960 2022-12-13 06:26 /user/cloudera/vim_4.txt
 
 [cloudera@quickstart ~]$ hdfs dfs -getmerge -nl /user/cloudera/*.txt ./vim_all.txt
 [cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/vim_all.txt /user/cloudera/
